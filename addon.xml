@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.mediatracker" name="MediaTracker" version="0.0.1" provider-name="bonukai">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>        
+    </requires>
+    <extension library="default.py" point="xbmc.service"  />
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">MediaTracker scrobbler</summary>
+        <description lang="en_GB">MediaTracker scrobbler</description>
+        <language>en</language>
+        <platform>all</platform>
+    </extension>
+</addon>
