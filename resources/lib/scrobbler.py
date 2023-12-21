@@ -62,13 +62,13 @@ class Scrobbler:
             })
 
             tmdbId = res.get("tvshowdetails", {}).get(
-                "uniqueid", {}).get("tmdb")
+                "uniqueid", {}).get("tmdb") or None
             imdbId = res.get("tvshowdetails", {}).get(
-                "uniqueid", {}).get("mdb")
+                "uniqueid", {}).get("imdb") or None
 
             if tmdbId == None and imdbId == None:
                 xbmc.log(
-                    f"MediaTracker: missing tmdbId and imdbId for episode of \"{videoInfoTag.getTVShowTitle()}\"", xbmc.LOGDEBUG)
+                    f"MediaTracker: missing tmdbId and imdbId for episode of \"{videoInfoTag.getTVShowTitle()}\"", xbmc.LOGERROR)
                 return
 
             seasonNumber = videoInfoTag.getSeason()
@@ -105,12 +105,12 @@ class Scrobbler:
                 })
 
         elif videoInfoTag.getMediaType() == "movie":
-            tmdbId = videoInfoTag.getUniqueID('tmdbId')
-            imdbId = videoInfoTag.getUniqueID('imdb')
-
+            tmdbId = videoInfoTag.getUniqueID('tmdbId') or None
+            imdbId = videoInfoTag.getUniqueID('imdb') or None
+            
             if tmdbId == None and imdbId == None:
                 xbmc.log(
-                    f"MediaTracker: missing tmdbId and imdbId for \"{videoInfoTag.getTitle()}\"", xbmc.LOGDEBUG)
+                    f"MediaTracker: missing tmdbId and imdbId for \"{videoInfoTag.getTitle()}\"", xbmc.LOGERROR)
                 return
 
             xbmc.log(
